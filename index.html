@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Booking System</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 32px 16px;
+      font-family: Arial, sans-serif;
+      background: #f3f5f2;
+      color: #24352d;
+    }
+
+    .booking-card {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 28px;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 8px 24px #193b2a18;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: #245c3b;
+    }
+
+    .intro {
+      margin: 0 0 24px;
+      color: #607068;
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 6px;
+      font-weight: bold;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5ce;
+      border-radius: 8px;
+      font: inherit;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 2px solid #77b58a;
+      border-color: #36734b;
+    }
+
+    button {
+      margin-top: 22px;
+      border: 0;
+      background: #287344;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d5934;
+    }
+
+    #confirmation {
+      display: none;
+      margin-top: 18px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #e6f5e9;
+      color: #205b32;
+    }
+  </style>
+</head>
+<body>
+  <main class="booking-card">
+    <h1>Library Room Booking</h1>
+    <p class="intro">Reserve a study room for your next visit.</p>
+
+    <form id="bookingForm">
+      <label for="name">Your name</label>
+      <input id="name" name="name" type="text" required>
+
+      <label for="email">Email address</label>
+      <input id="email" name="email" type="email" required>
+
+      <label for="room">Study room</label>
+      <select id="room" name="room" required>
+        <option value="">Choose a room</option>
+        <option>Quiet Room (2 people)</option>
+        <option>Group Room (4 people)</option>
+        <option>Conference Room (8 people)</option>
+      </select>
+
+      <label for="date">Booking date</label>
+      <input id="date" name="date" type="date" required>
+
+      <label for="time">Start time</label>
+      <select id="time" name="time" required>
+        <option value="">Choose a time</option>
+        <option>9:00 AM</option>
+        <option>10:00 AM</option>
+        <option>11:00 AM</option>
+        <option>1:00 PM</option>
+        <option>2:00 PM</option>
+        <option>3:00 PM</option>
+      </select>
+
+      <button type="submit">Book a room</button>
+    </form>
+
+    <div id="confirmation" role="status"></div>
+  </main>
+
+  <script>
+    const form = document.getElementById("bookingForm");
+    const confirmation = document.getElementById("confirmation");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const room = document.getElementById("room").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+
+      confirmation.textContent =
+        `Thanks, ${name}! Your ${room} booking is requested for ${date} at ${time}.`;
+      confirmation.style.display = "block";
+      form.reset();
+    });
+  </script>
+</body>
+</html>
